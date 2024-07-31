@@ -1,0 +1,86 @@
+<configuration>
+    <!-- Access log appender -->
+    <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/app/logs/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/app/logs/access.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Error log appender -->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/app/logs/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/app/logs/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Console appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Access logger -->
+    <logger name="com.example.springboot_proto.app.settings.AccessLogAspect" level="INFO" additivity="false">
+        <appender-ref ref="ACCESS_FILE"/>
+    </logger>
+
+    <!-- Error level logger -->
+    <logger name="com.example.springboot_proto" level="ERROR" additivity="false">
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+
+    <!-- Level-specific loggers -->
+    <logger name="com.example" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="com.example" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="com.example" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="com.example" level="WARN" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="com.example" level="ERROR" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="com.example" level="FATAL" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+    <logger name="com.example" level="OFF" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </root>
+</configuration>
